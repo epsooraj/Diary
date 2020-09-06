@@ -1,0 +1,41 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Diary</title>
+	</head>
+	<body>
+		<div>
+			<h1>Diary</h1>
+
+			{% if user.is_authenticated %}
+			<p>Welcome, {{ user.username }} !</p>
+			<form action="/auth/logout/" method="post">
+				{% csrf_token %}
+				<input type="submit" value="Logout" />
+			</form>
+			{% endif %}
+		</div>
+		<div>
+			{% for diary_page in diary_pages %}
+			<ul>
+				<li>{{ diary_page.heading }}</li>
+				<li>{{ diary_page.text }}</li>
+			</ul>
+			{% endfor %}
+		</div>
+
+		<div>
+			<form action="/diary/" method="post">
+				{% csrf_token %}
+				<label for="heading">Heading</label>
+				<textarea name="heading" id="heading"></textarea>
+				<label for="body">Body</label>
+				<textarea name="body" id="body"></textarea>
+				<input type="submit" />
+			</form>
+		</div>
+	</body>
+</html>
