@@ -1,20 +1,21 @@
 {% extends '../base.html' %} {%block content%}
-<div>
-	<ul>
-		<li>{{heading}}</li>
-		<li>{{text}}</li>
-	</ul>
 
+<div class="mt-5">
 	{% if not edit %}
-	<a href="edit/">Edit</a>
-	{% endif %}
-</div>
+	<h1 class="display-4">{{heading}}</h1>
+	<hr />
+	<p class="lead my-4">{{text}}</p>
+	<a class="btn btn-primary btn-lg mt-4" href="edit/" role="button">Edit</a>
 
-{% if edit %}
-<div>
-	<form action="/diary/{{id}}/edit/" method="post">
-		{% csrf_token %} {{ form }}
-		<input type="submit" />
-	</form>
+	{% else %}
+	<div>
+		<form action="/diary/{{id}}/edit/" method="post">
+			{% csrf_token %} {{ form }}
+			<input class="btn btn-primary" type="Submit" />
+			<a class="btn btn-secondary" href="/diary/{{id}}/">Cancel</a>
+		</form>
+	</div>
+	{% endif %} {% endblock %}
+
+
 </div>
-{% endif %} {% endblock %}
