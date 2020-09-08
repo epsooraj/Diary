@@ -1,0 +1,20 @@
+{% extends '../base.html' %} {%block content%}
+<div>
+	<ul>
+		<li>{{heading}}</li>
+		<li>{{text}}</li>
+	</ul>
+
+	{% if not edit %}
+	<a href="edit/">Edit</a>
+	{% endif %}
+</div>
+
+{% if edit %}
+<div>
+	<form action="/diary/{{id}}/edit/" method="post">
+		{% csrf_token %} {{ form }}
+		<input type="submit" />
+	</form>
+</div>
+{% endif %} {% endblock %}
