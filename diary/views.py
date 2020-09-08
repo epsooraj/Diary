@@ -107,12 +107,12 @@ class DiaryPage(LoginRequiredMixin, TemplateView):
                 diary_form = DiaryForm(request.POST)
 
                 if diary_form.is_valid():
-                    diary_obj = Diary(
+                    diary_obj = Diary.objects.get(
                         id=kwargs["postid"],
-                        user=request.user,
-                        heading=diary_form.cleaned_data["heading"],
-                        text=diary_form.cleaned_data["body"]
+                        user=request.user
                     )
+                    diary_obj.heading = diary_form.cleaned_data["heading"]
+                    diary_obj.text = diary_form.cleaned_data["body"]
                     diary_obj.save()
 
             except Exception as ex:
