@@ -1,2 +1,4 @@
 # Diray
-Diary Application
+
+Simple Diary Application built with Django
+
