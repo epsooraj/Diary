@@ -1,41 +1,42 @@
-{% load socialaccount %}
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Diary</title>
-	</head>
-	<body>
-		<div>
-			<h1>Diary</h1>
+{% extends '../base.html' %} {%block content%}
 
-			{% if user.is_authenticated %}
-			<p>Welcome, {{ user.username }} !</p>
-			<form action="/auth/logout/" method="post">
-				{% csrf_token %}
-				<input type="submit" value="Logout" />
-			</form>
-			{% endif %}
-		</div>
-		<div>
+<div class="mt-4">
+	<h3>Your Diaries</h3>
+
+	<div class="d-flex">
+		<div class="mx-auto" style="width: 100%">
 			{% for diary_page in diary_pages %}
-			<ul>
-				<li>{{ diary_page.heading }}</li>
-				<li>{{ diary_page.text }}</li>
-			</ul>
+			<div class="card my-4">
+				<h5 class="card-header d-flex justify-content-between align-items-center">
+					<div>
+						<a class="ml-auto" href="{{diary_page.id}}">{{diary_page.heading}}</a>
+					</div>
+					<div>
+						<span class="mr-auto">{{ diary_page.date }}</span>
+					</div>
+					<div>
+						<div onclick="delete_page({{diary_page.id}}, '{{csrf_token}}');" class="close" type="button"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</div>
+					</div>
+				</h5>
+				<div class="card-body">
+					<p class="card-text">{{ diary_page.text }}</p>
+				</div>
+			</div>
 			{% endfor %}
 		</div>
 
-		<div>
-			<form action="/diary/" method="post">
-				{% csrf_token %}
-				<label for="heading">Heading</label>
-				<textarea name="heading" id="heading"></textarea>
-				<label for="body">Body</label>
-				<textarea name="body" id="body"></textarea>
-				<input type="submit" />
+
+
+		<div class="mx-4" style="width: 100%">
+			<h1>Add New</h1>
+			<form class="d-flex flex-column justify-content-center align-items-center " action="/diary/" method="post">
+				{% csrf_token %} {{ form }}
+				<input class="w-50" type="submit" />
 			</form>
 		</div>
-	</body>
-</html>
+	</div>
+</div>
+{% endblock %}
