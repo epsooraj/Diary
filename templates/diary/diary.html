@@ -2,8 +2,8 @@
 
 <div class="mt-4">
 
-	<div class="d-flex">
-		<div class="mr-5" style="width: 100%">
+	<div class="d-flex flex-sm-row flex-column-reverse">
+		<div class="mr-sm-5" style="width: 100%">
 			<h1 class="mb-5">Your Diaries</h1>
 			{% for diary_page in diary_pages %}
 			<div class="card my-4">
@@ -12,7 +12,7 @@
 						<a class="ml-auto" href="{{diary_page.id}}">{{diary_page.heading}}</a>
 					</div>
 					<div>
-						<span class="mr-auto">{{ diary_page.date }}</span>
+						<span class="mr-sm-auto">{{ diary_page.date }}</span>
 					</div>
 					<div>
 						<div onclick="delete_page({{diary_page.id}}, '{{csrf_token}}');" class="close" type="button"
@@ -30,7 +30,7 @@
 
 
 
-		<div class="ml-5" style="width: 100%">
+		<div class="ml-sm-5" style="width: 100%">
 			<h1 class="mb-5">Add New</h1>
 			<form class="d-flex flex-column justify-content-center align-items-center " action="/diary/" method="post">
 				{% csrf_token %} {{ form }}
