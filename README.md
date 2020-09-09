@@ -1,4 +1,4 @@
-# Diray
+# Diary
 
 ![Heroku](https://heroku-badge.herokuapp.com/?app=personaldiaryapp)
 
