@@ -1,13 +1,23 @@
 {% load socialaccount %}
+{% load static %}
 <html>
-	<head>
-		<title></title>
-	</head>
-	<body>
-		{% if user.is_authenticated %}
-		<p>Welcome, {{ user.username }} !</p>
-		{% else %}
-		<a href="{% provider_login_url 'google' %}">Login with Google</a>
-		{% endif %}
-	</body>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+	<link rel="stylesheet" href={% static "bootstrap-4.5.2/css/bootstrap.css"%} />
+	<link rel="stylesheet" href={%static "css/style.css"%}>
+	<link rel="stylesheet" href={%static "css/media-query.css"%}>
+	<title>Diary</title>
+</head>
+
+<body>
+	<div class="h-100 d-flex flex-column justify-content-center align-items-center">
+		<h1 class="mx-auto mb-5 display-1">Diary</h1>
+		<button onclick="location.href = '{% provider_login_url 'google' %}';" class="loginBtn loginBtn--google">
+			Login with Google
+		</button>
+	</div>
+</body>
+
 </html>
