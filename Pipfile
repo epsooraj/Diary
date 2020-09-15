@@ -11,8 +11,10 @@ dj-database-url = "==0.5.0"
 gunicorn = "*"
 django-heroku = "*"
 djangorestframework = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.8"
