@@ -6,8 +6,12 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 
+from rest_framework import viewsets, generics, mixins
+
 from .models import Diary
 from .forms import DiaryForm
+
+from .serializers import DiarySerializer
 
 
 class DiaryView(LoginRequiredMixin, TemplateView):
@@ -132,3 +136,30 @@ class DiaryPage(LoginRequiredMixin, TemplateView):
             return redirect("/diary/")
 
         return redirect("/diary/")
+
+
+class DiaryPagesList(generics.ListCreateAPIView):
+    '''
+    GET     - Returns list of user's Diary Pages
+    POST    - Add Page
+    '''
+    serializer_class = DiarySerializer
+
+    def get_queryset(self):
+        return Diary.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class DiaryPageView(generics.RetrieveUpdateDestroyAPIView):
+    '''
+    Diary Page View
+    '''
+    serializer_class = DiarySerializer
+    lookup_field = 'id'
+
+    def get_queryset(self):
+        diary = Diary.objects.filter(user=self.request.user)
+        print(diary)
+        return diary

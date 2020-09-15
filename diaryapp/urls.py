@@ -10,5 +10,6 @@ urlpatterns = [
     path('auth/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
     path('diary/', include("diary.urls")),
+    path('api/', include("diary.urls")),
     path('', RedirectView.as_view(url="/diary/")),
 ]
