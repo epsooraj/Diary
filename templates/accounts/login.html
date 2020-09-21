@@ -1,10 +1,26 @@
-{% extends '../base.html' %}
-{% load socialaccount %}
-{%block content%}
+{% extends '../base.html' %} {% load socialaccount %} {%block content%}
 <div class="mt-5 d-flex flex-column justify-content-center align-items-center">
-	<h1 class="mx-auto my-5 display-1">Diary</h1>
-	<button onclick="location.href = '{% provider_login_url 'google' %}';" class="loginBtn loginBtn--google">
-		Login with Google
-	</button>
+  <h1 class="mx-auto my-5 display-1">Diary</h1>
+
+  <button
+    onclick="location.href = '{% provider_login_url 'google' %}';"
+    class="btn btn-social btn-google my-2 w-25 text-center"
+  >
+    <span class="fab fa-google"></span> Google
+  </button>
+
+  <button
+    onclick="location.href = '{% provider_login_url 'github' %}';"
+    class="btn btn-social btn-github my-2 w-25 text-center"
+  >
+    <span class="fab fa-github"></span> Github
+  </button>
+
+  <button
+    onclick="location.href = '{% provider_login_url 'facebook' process='login' %}';"
+    class="btn btn-social btn-facebook my-2 w-25 text-center"
+  >
+    <span class="fab fa-facebook"></span> Facebook
+  </button>
 </div>
 {% endblock %}
