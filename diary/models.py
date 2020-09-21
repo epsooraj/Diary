@@ -18,7 +18,7 @@ class Diary(models.Model):
     text = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return str(self.user) + " " + (self.heading) + " " + str(self.date)
+        return str(self.user) + " " + str(self.heading) + " " + str(self.date)
 
     class Meta:
         verbose_name_plural = "diaries"
