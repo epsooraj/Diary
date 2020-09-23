@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     'diary.apps.DiaryConfig',
     'accounts.apps.AccountsConfig',
+    'frontend.apps.FrontendConfig',
 
     'allauth',
     'allauth.account',
