@@ -1,5 +1,7 @@
-import App from "./components/App";
+import React, { Component } from "react";
 import { render } from "react-dom";
 
-// const container = document.getElementById("app");
-// render(<App />, container);
+import App from "./App";
+
+const container = document.getElementById("app");
+render(<App />, container);

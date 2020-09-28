@@ -1,4 +1,8 @@
 module.exports = {
+  output: {
+    filename: "main.js",
+    publicPath: "/static/frontend/",
+  },
   module: {
     rules: [
       {
@@ -8,6 +12,22 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.(png|svg|jpg|gif|jpe?g)$/,
+        use: [
+          {
+            options: {
+              name: "[name].[ext]",
+              outputPath: "img/",
+            },
+            loader: "file-loader",
+          },
+        ],
+      },
     ],
+  },
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/,
   },
 };
