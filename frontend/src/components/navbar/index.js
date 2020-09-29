@@ -9,18 +9,34 @@ import GithubLogo from "../../assets/images/icons/github/GitHub-Mark-32px.png";
 import { getCookie } from "../../utils/cookie";
 
 export default class HeaderNavbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: "",
+    };
+  }
+
+  componentDidMount() {
+    // Fetch user
+    fetch("/accounts/user/", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ user: data.user });
+      });
+  }
+
   logOut = () => {
     fetch("/auth/logout/", {
       method: "POST",
       headers: { "X-CSRFToken": getCookie("csrftoken") },
-      body: {},
     }).then(() => {
       window.location = "/accounts/login/?next=/";
     });
   };
 
   render() {
-    console.log("ttt");
     return (
       <Navbar collapseOnSelect expand="lg">
         <Navbar.Brand href="#">
@@ -45,7 +61,7 @@ export default class HeaderNavbar extends Component {
             <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown
               className="text-capitalize text-dark"
-              title="Welcome Ep Sooraj"
+              title={`Welcome ${this.state.user}`}
               id="collasible-nav-dropdown"
             >
               <NavDropdown.Item href="#" onClick={this.logOut}>

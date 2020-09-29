@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import status
@@ -37,3 +39,13 @@ class RegisterUser(APIView):
                 json = serializer.data
                 return Response(json, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserView(APIView):
+    """
+    docstring
+    """
+
+    def get(self, request, *args, **kwargs):
+        name = request.user.first_name + " " + request.user.last_name
+        return JsonResponse({"user": name})
