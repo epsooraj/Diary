@@ -12,7 +12,7 @@ export default class Home extends Component {
 
     this.state = {
       data: [],
-      loaded: true,
+      loading: true,
     };
   }
 
