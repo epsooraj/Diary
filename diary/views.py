@@ -161,5 +161,4 @@ class DiaryPageView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         diary = Diary.objects.filter(user=self.request.user)
-        print(diary)
         return diary
