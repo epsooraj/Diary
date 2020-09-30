@@ -24,7 +24,6 @@ export default class AddNew extends Component {
     await this.setState({ loading: true, validate: true });
 
     if (this.state.heading !== "" && this.state.text !== "") {
-      console.log("all set");
       this.addNewDiary();
 
       this.setState({
