@@ -23,7 +23,7 @@ class LoginView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect("/diary/")
+            return redirect("/")
         return render(request, "accounts/login.html", {})
 
 
