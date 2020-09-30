@@ -52,7 +52,11 @@ export default class Home extends Component {
             <h1 className="py-4">Your Diaries</h1>
             <div className="px-4">
               {this.state.data.map((diary) => (
-                <DiaryCard key={diary.id} diary={diary} />
+                <DiaryCard
+                  key={diary.id}
+                  diary={diary}
+                  fetchDiaries={this.fetchDiaries}
+                />
               ))}
             </div>
           </div>
