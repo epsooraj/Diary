@@ -105,7 +105,7 @@ export default class AddNew extends Component {
           variant="primary"
           size="lg"
         >
-          Save
+          {this.state.loading ? "Saving..." : "Save"}
         </Button>
       </Form>
     );
