@@ -23,7 +23,7 @@ export default class DiaryCard extends Component {
     }).then((response) => {
       if (response.status > 400) {
         //   Redirect to login page
-        // return (window.location = "/accounts/login/?next=/");
+        return (window.location = "/accounts/login/?next=/");
       }
       return this.props.fetchDiaries();
     });
