@@ -12,13 +12,13 @@ export default class Home extends Component {
 
     this.state = {
       data: [],
-      loaded: false,
-      placeholder: "Loading",
+      loaded: true,
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.fetchDiaries();
+    this.setState({ loading: false });
   }
 
   fetchDiaries = () => {
@@ -41,7 +41,6 @@ export default class Home extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <Container className="mt-4 py-4 text-center">
         <div className="w-100 d-flex flex-column flex-md-row-reverse">
