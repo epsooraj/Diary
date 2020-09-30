@@ -9,7 +9,7 @@ urlpatterns = [
 
     # @route /api/
     path('diary/', views.DiaryPagesList.as_view(), name="diarypagesapi"),
-    path('diary/<int:id>', views.DiaryPageView.as_view(), name="diarypageapi"),
+    path('diary/<int:id>/', views.DiaryPageView.as_view(), name="diarypageapi"),
 
     # @route /diary/
     path('<int:postid>/', views.DiaryPage.as_view(), name="diaryPage"),
