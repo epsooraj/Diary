@@ -1,6 +1,6 @@
 # Diary
 
-![Heroku](https://heroku-badge.herokuapp.com/?app=personaldiaryapp)
+![Heroku](https://heroku-d-badge.herokuapp.com/?app=personaldiaryapp)
 
 Simple Diary Application built with Django
 
