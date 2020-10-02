@@ -53,11 +53,24 @@ export default class DiaryCard extends Component {
 
         <Card.Body>
           <Card.Title>
-            <Link className="text-decoration-none text-dark h2" to="/2">
+            <Link
+              className="text-decoration-none text-dark h2"
+              to={`/${this.props.diary.id}/`}
+            >
               {diary.heading}
             </Link>
           </Card.Title>
-          <Card.Text>{diary.text}</Card.Text>
+          <Card.Text
+            className=""
+            style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              width: "200px",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {diary.text}
+          </Card.Text>
         </Card.Body>
       </Card>
     );
