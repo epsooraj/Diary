@@ -33,7 +33,7 @@ export default class AddNew extends Component {
       });
     }
 
-    await this.setState({ loading: false });
+    this.setState({ loading: false });
   };
 
   addNewDiary = () => {
