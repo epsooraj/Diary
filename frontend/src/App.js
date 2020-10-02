@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HeaderNavbar from "./components/navbar";
 
 import Home from "./views/home";
+import PostPage from "./views/post/PostPage";
 
 class App extends Component {
   render() {
@@ -14,7 +15,8 @@ class App extends Component {
           <HeaderNavbar />
         </Container>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path="/:postid" component={PostPage} />
         </Switch>
       </Router>
     );
