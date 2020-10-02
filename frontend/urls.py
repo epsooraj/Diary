@@ -6,4 +6,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
+    path('<int:postid>/', views.index, name="postid"),
 ]
