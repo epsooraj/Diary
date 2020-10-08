@@ -15,7 +15,7 @@ export default class PostPage extends Component {
       text: "",
       newHeading: "",
       newText: "",
-      loading: true,
+      saveLoading: false,
       edit: false,
     };
   }
@@ -37,7 +37,6 @@ export default class PostPage extends Component {
           text: data.text,
           newHeading: data.heading,
           newText: data.text,
-          loading: false,
         });
       });
   }
@@ -60,7 +59,7 @@ export default class PostPage extends Component {
 
   checkAndUpdateDiary = async () => {
     await this.setState({
-      loading: true,
+      saveLoading: true,
       validate: true,
     });
 
@@ -73,12 +72,12 @@ export default class PostPage extends Component {
         text: this.state.newText,
 
         edit: false,
-        loading: false,
+        saveLoading: false,
         validate: false,
       });
     }
 
-    await this.setState({ loading: false });
+    await this.setState({ saveLoading: false });
   };
 
   updateDiary = () => {
@@ -99,6 +98,28 @@ export default class PostPage extends Component {
         return (window.location = "/accounts/login/?next=/");
       }
       return;
+    });
+  };
+
+  confirmAndDelete = () => {
+    const del = confirm("Are you sure?");
+    if (del) {
+      this.deleteDiary();
+    }
+  };
+
+  deleteDiary = () => {
+    fetch(`/api/diary/${this.state.id}/`, {
+      method: "DELETE",
+      headers: {
+        "X-CSRFToken": getCookie("csrftoken"),
+      },
+    }).then((response) => {
+      if (response.status > 400) {
+        return (window.location = "/accounts/login/?next=/");
+      } else if (response.status > 200) {
+        return (window.location = "/");
+      }
     });
   };
 
@@ -159,14 +180,19 @@ export default class PostPage extends Component {
               className="btn btn-success px-4 mr-2"
               onClick={this.checkAndUpdateDiary}
             >
-              Save
+              {this.state.saveLoading ? "Saving..." : "Save"}
             </div>
             <div className="btn btn-primary px-4" onClick={this.cancelEdit}>
               Cancel
             </div>
           </>
         )}
-        <div className="btn btn-danger px-3 ml-2">Delete</div>
+        <div
+          className="btn btn-danger px-3 ml-2"
+          onClick={this.confirmAndDelete}
+        >
+          Delete
+        </div>
       </Container>
     );
   }
